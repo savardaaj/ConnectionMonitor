@@ -1,0 +1,32 @@
+﻿
+th {
+    padding-right: 100px;
+    padding-bottom: 10px;
+    text-wrap: none;
+}
+
+#thStatus {
+    padding-right: 20px;
+}
+#thLabName, #thIPAddress {
+    width: 13%;
+}
+img {
+    vertical-align: baseline;
+}
+#tblConnections tbody tr td:nth-child(1) {
+    padding-left: 10px;
+}
+
+#MainContent_divConnections {
+    padding-top: 100px;
+}
+
+#divConnectionWarning {
+    display: none;
+}
+
+#imgWarning {
+    display: none;
+}
+
