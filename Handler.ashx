@@ -3,19 +3,12 @@
 using System;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
 using System.Web.Script.Serialization;
 using System.Linq;
-using System.Reflection;
-using System.Web.UI.HtmlControls;
 
 public class Handler : IHttpHandler {
 
-    public List<Connection> data = new List<Connection>();
-    public List<KeyValuePair<string, Connection>> newDataListKVP = new List<KeyValuePair<string, Connection>>();
-    public List<KeyValuePair<string, Connection>> globalCopy;
     public JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
 
     public void ProcessRequest(HttpContext context)
@@ -35,7 +28,7 @@ public class Handler : IHttpHandler {
             switch (action)
             {
                 case "getConnections":
-                    data = getConnections(context);
+                    data = getConnections();
                     break;
                 default:
                     break;
@@ -53,7 +46,7 @@ public class Handler : IHttpHandler {
 
     }
 
-    public List<KeyValuePair<string, Connection>> getConnections(HttpContext c)
+    public List<KeyValuePair<string, Connection>> getConnections()
     {
         if (Global.Data != null)
         {
@@ -66,6 +59,9 @@ public class Handler : IHttpHandler {
     }
 
     public void ProcessNewData(string requestBody) {
+        List<KeyValuePair<string, Connection>> newDataListKVP = new List<KeyValuePair<string, Connection>>();
+        List<KeyValuePair<string, Connection>> globalCopy;
+        List<Connection> data = new List<Connection>();
 
         //Initialize global data if it is null
         if (Global.Data == null) {
